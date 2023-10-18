@@ -1,0 +1,148 @@
+\documentclass{article}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\hypersetup{hypertex=true,
+           colorlinks=true,
+            linkcolor=blue,
+            anchorcolor=blue,
+           citecolor=blue}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{tcolorbox}
+\usepackage{ctex}
+\usepackage{CJKutf8}
+\usepackage{tikz-cd}
+\usepackage{tikz}
+\usepackage{mathrsfs}
+\usepackage{ulem}
+\usepackage{pgfplots}
+\usepackage{mycommand}
+\usepackage{quiver}
+\colorlet{LightGray}{White!90!Periwinkle}
+\colorlet{LightOrange}{Orange!15}
+\colorlet{LightGreen}{Green!15}
+\usetikzlibrary{decorations.markings}
+
+\newcommand{\HRule}[1]{\rule{\linewidth}{#1}}
+
+\declaretheoremstyle[name=定理,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=subsection]{theorem}
+%\tcolorboxenvironment{theorem}{colback=LightGray}
+
+
+\declaretheoremstyle[name=定义,]{thmsty}
+\declaretheorem[style=thmsty,numberwithin=subsection]{definition}
+%\tcolorboxenvironment{definition}{colback=blue!15}
+
+\declaretheoremstyle[name=命题,]{prosty}
+\declaretheorem[style=prosty,numberlike=theorem]{proposition}
+%\tcolorboxenvironment{proposition}{colback=LightOrange}
+
+\declaretheoremstyle[name=引理,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{lemma}
+%\tcolorboxenvironment{lemma}{colback=LightGreen}
+
+\declaretheoremstyle[name=例,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{example}
+%\tcolorboxenvironment{example}{colback=purple!10}
+
+
+\declaretheoremstyle[name=习题,]{prcpsty}
+\declaretheorem[style=prcpsty]{exercise}
+%\tcolorboxenvironment{exercise}{colback=white!20}
+
+
+\declaretheoremstyle[name=推论,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{corollary}
+
+
+\declaretheoremstyle[name=性质,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{property}
+
+\declaretheoremstyle[name=公理,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{axiom}
+
+\declaretheoremstyle[name=注,]{prcpsty}
+\declaretheorem[style=prcpsty,numberlike=theorem]{remark}
+
+\declaretheoremstyle[name=提示,qed = \qedsymbol]{prcpsty}
+\declaretheorem[style=prcpsty]{solution}
+\tcolorboxenvironment{solution}{colback=white!20}
+
+\renewcommand{\proofname}{\indent\bf 证明}
+%\tcolorboxenvironment{proof}{colback=white!20}
+\setstretch{1.2}
+\geometry{
+    textheight=9in,
+    textwidth=5.5in,
+    top=1in,
+    headheight=12pt,
+    headsep=25pt,
+    footskip=30pt
+}
+\newcommand{\strip}[1]{%
+\shadedraw[very thick,top color=white,bottom color=gray,rotate=#1]
+(0:2.8453) ++ (-30:1.5359) arc (60:0:2)
+-- ++ (90:5) arc (0:60:2) -- ++ (150:3) arc (60:120:2)
+-- ++ (210:5) arc (120:60:2) -- cycle;}
+
+\begin{document}
+\title{ \normalsize \textsc{}
+		\\ [2.0cm]
+		\HRule{1.5pt} \\
+		\LARGE \textbf{\uppercase{Mathematical Analysis}
+		\HRule{2.0pt} \\ [0.6cm] \LARGE{Lecture} \vspace*{10\baselineskip}}
+		}
+\date{} 
+\author{\textbf{Author} \\ 
+		Liu\\
+		ShanXi University\\
+		0th}
+        
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\pagenumbering{Roman}
+\newpage
+\pagenumbering{arabic}
+\section{序}
+本文主要参考(抄袭)了\cite{yp}与\cite{Takagi}二书并辅之以代数学视角归纳总结,对于初学者或许并不友好.请谨慎阅读.
+\newpage
+\section{无理数论\cite{Takagi}}
+要从根本上讨论数的概念就必须从自然数理论开始.而这属于现代数学基础理论的范畴.按照19世纪末以来的惯例,在此处讨论一下无理数论,即假定有理数是已知的,从有理数向无理数过滤.\\
+因此在下文中,有理数的四则运算法则和大小关系都被认为是已知的.其中有理数的稠密性非常重要,即设$a,b$为两个不相同的有理数,且$a<b$,则一定存在一个有理数$x$使得$a<x<b$,从而,存在无数个这样的有理数.最简单的例子就是$m = \frac{a+b}{2}$.
+\begin{remark}
+无理数论中我们会第一次构造出实数,而后在后文的实数理论中,我们将会用比较偏向代数的语言来描绘实数理论及其公理体系.
+\end{remark}
+\subsection{有理数分割}
+把全体有理数按照下面的条件(1)和(2)分成$A,A'$两组子集(严格意义上的两组,即不允许空集的存在)时,把这种划分称为\emph{分割}.\\
+(1) 各有理数或者只属于$A$或者只属于$A'$.即$A,A'$作为有理数的子集,互为补集.\\
+(2) 属于$A$的各有理数小于属于$A'$的各有理数.用符号表示为:如果$a\in A$,$a'\in A'$,则$a<a'$.\\
+把这一分割写作$(A,A')$.而把$A$称为分割的\emph{下组},$A'$称为分割的\emph{上组}.\\
+在分割$(A,A')$中,由于$A$与$A'$互为补集,因此确定了一方就可以自然地确定另一方.现在,我们把上组切掉,只考虑下组,可以如下定义.\\
+分割的下组$A$是上方有界的有理数集合,且
+$$
+\text{如果 } a \in A,x < a, \text{则} x \in A.
+$$
+有两种类型的有理数分割.\\
+(第一种分割) 存在某个有理数$a$,它是上组与下组的边界,即小于$a$的所有有理数都属于下组,而大于$a$的所有有理数都属于上组.这时,依据条件(1),$a$本身必须或者属于下组或者属于上组.如果$a$属于下组,那么$a$就是下组的最大数,此时上组没有最小数.如果$a$属于上组,那么$a$是上组的最小数,此时下组没有最大数.\\
+这是根据有理数的稠密性得到的.如果假设下组有最大数$a$,同时上组有最小数$a'$,那么满足$a<m<a'$的$m$既不属于下组也不属于上组,与条件(1)矛盾.\\
+因此,对于任意有理数$a$都有一个分割$(A,A')$与之对应,反过来,当分割$(A,A')$在下组有最大数$a$或者在上组$A'$有最小数$a'$时,则$(A,A')$就是上面意义下与$a$或$a'$对应的分割.此时称分割$(A,A')$确定有理数$a$或$a'$.\\
+(第二种分割) 对于分割$(A,A')$,$A$没有最大的有理数,同时,$A'$没有最小的有理数.此时,于上面意义下不存在与$(A,A')$对应的有理数.于是,称分割$(A,A')$确定一个\emph{无理数}$\alpha$.\\
+有理数和无理数统称\emph{实数}.
+这不过是一种称呼而已,即到目前为止实数$\alpha$只是有理数的一个分割$(A,A')$而已.只有当适当定义了实数的大小以及四则运算的意义才能确定实数的概念.我们甚至还没有给出第二种分割的实际存在性证明,我们暂时放下其存在性证明,继续下面的话题.\\
+我们使一个分割$(A,A')$对应于一个实数$\alpha$,这里$A$称为$\alpha$的下组,$A'$为$\alpha$的上组.其中,当$\alpha$是有理数,且$\alpha$是下组的最大数而属于下组时,我们把$\alpha$移到上组.于是,在这种规定之下,上面的第一种分割与第二种分割被统一起来,$\alpha$的下组没有最大数.
+\newpage
+\bibliographystyle{elsart-num}
+\bibliography{Reference}
+\end{document}

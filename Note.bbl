@@ -1,0 +1,12 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+
+\bibitem{Takagi}
+高木貞治, 解析概論, (No Title).
+
+\bibitem{yp}
+于品, 数学分析讲义, (No Title).
+
+\end{thebibliography}

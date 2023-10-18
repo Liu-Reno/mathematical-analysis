@@ -1,0 +1,4 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}序}{1}{section.1}%
+\contentsline {section}{\numberline {2}无理数论\cite {Takagi}}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}有理数分割}{2}{subsection.2.1}%
